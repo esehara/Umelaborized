@@ -133,19 +133,7 @@ def main():
     ume.load_image("test.jpg")
     ume.kill_paste(5000,False)
     ume.load_image("test2.jpg")
-    ume.kill_paste(1000,True)
-    ume.load_image("test3.jpg")
-    ume.kill_paste(1000,True)
-
-    ume.load_image("test4.jpg")
-    ume.stamp_image(3,10)
-    ume.load_image("test5.jpg")
     ume.stamp_image(2,20)
-    ume.load_image("test6.jpg")
-    ume.stamp_image(2,50)
-    ume.load_image("test7.jpg")
-    ume.stamp_image(2,20)
-
     ume.test_show()
     ume.save_image("koiso.png")
 
