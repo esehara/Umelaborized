@@ -14,6 +14,18 @@ class umelaborize:
         self.make_mask_x = self.config_json[0][0]
         self.make_mask_y = self.config_json[0][1]
 
+    def __init__(self, x = 640, y = 480, confimage = '', hoge = 0):
+        confImage = Image.open(confimage)
+        self.config_json = [[confImage.size[0]-1, confImage.size[1]-1]]
+        self.make_mask_x = confImage.size[0]-1
+        self.make_mask_y = confImage.size[1]-1
+        pixelArray = []
+        for y in xrange(confImage.size[1]):
+            yArray = []
+            for x in xrange(confImage.size[0]):
+                yArray.append(1 if confImage.getpixel((x,y)) == 0 else 0)
+            pixelArray.append(yArray)
+        self.config_json.append(pixelArray)
 
     def load_image(self,image,debug = False):
         self.im = Image.open(image)
@@ -138,4 +150,6 @@ def main():
     ume.save_image("koiso.png")
 
 if __name__ == '__main__':
-    main()
+    ume = umelaborize(2000, 1000, 'hoge.bmp', 0)
+    print ume.config_json
+    #main()
