@@ -15,6 +15,7 @@ class umelaborize:
         self.make_mask_y = self.config_json[0][1]
 
     def __init__(self, x = 640, y = 480, confimage = '', hoge = 0):
+        self.workspace = Image.new('RGB', (x, y))
         confImage = Image.open(confimage)
         self.config_json = [[confImage.size[0]-1, confImage.size[1]-1]]
         self.make_mask_x = confImage.size[0]-1
