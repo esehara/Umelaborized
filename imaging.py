@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 import Image,ImageEnhance
 import os
 import random
