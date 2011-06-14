@@ -150,7 +150,6 @@ def main():
     ume.save_image("koiso.png")
 
 if __name__ == '__main__':
-<<<<<<< HEAD
     ume = umelaborize(2000, 1000, 'hoge.bmp', 0)
     print ume.config_json
     ume.load_image('20110501_215111.jpg')
@@ -161,7 +160,4 @@ if __name__ == '__main__':
     ume.save_image("koiso.png")
 
     #main()
-=======
-    main()
 
->>>>>>> python3
