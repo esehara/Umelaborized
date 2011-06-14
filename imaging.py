@@ -151,7 +151,7 @@ def main_esehara():
 
 def main_niryuu():
     ume = umelaborize(2000, 1000, 'hoge.bmp', 0)
-    print ume.config_json
+    print(ume.config_json)
     ume.load_image('20110501_215111.jpg')
     ume.kill_paste(5000,False)
     ume.load_image("IMG_4925.JPG")
