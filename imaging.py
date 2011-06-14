@@ -50,7 +50,7 @@ class umelaborize:
                 box_y = 0
 
             if debug == True:
-                print "Paste =>",box_x,box_y,box_x_size,box_y_size
+                print("Paste =>",box_x,box_y,box_x_size,box_y_size)
 
             box = (box_x,box_y,box_x + box_x_size,box_y + box_y_size)
             work_x,work_y = self.workspace.size
@@ -62,14 +62,14 @@ class umelaborize:
             max_work_y = work_y
 
             if debug == True:
-                print mask_koma_x,mask_koma_y
+                print(mask_koma_x,mask_koma_y)
 
             while mask_check:
                 work_x = random.randint(1,max_work_x - 1)
                 work_y = random.randint(1,max_work_y - 1)
 
                 if debug == True:
-                    print work_x,work_y,(work_y / mask_koma_y) + 1,(work_x / mask_koma_x),self.config_json[work_y / mask_koma_y + 1][work_y / mask_koma_y]
+                    print(work_x,work_y,(work_y / mask_koma_y) + 1,(work_x / mask_koma_x),self.config_json[work_y / mask_koma_y + 1][work_y / mask_koma_y])
                 
                 fix_x = random.randint(0,max_work_x / 10)
                 fix_y = random.randint(0,max_work_y / 10)
@@ -79,12 +79,12 @@ class umelaborize:
                 if (work_y - fix_y) / mask_koma_y < 1 or work_y - fix_y < 0:
                     fix_y = 0
                 if debug == True:
-                    print work_x - fix_x,work_y - fix_y
+                    print(work_x - fix_x,work_y - fix_y)
                 if self.config_json[((work_y - fix_y) / mask_koma_y) + 1][(work_x - fix_x) / mask_koma_x] == 1:
                     mask_check = False
 
             if debug == True:
-                print "mask check ok"
+                print("mask check ok")
 
             #if debug == True:
             #    self.im.crop(box).show()
@@ -104,7 +104,7 @@ class umelaborize:
             else:
                 self.workspace.paste(base,(work_x,work_y))
 
-        print "Image Paste Done."
+        print("Image Paste Done.")
 
     def stamp_image(self,size,times):
         work_x,work_y = self.im.size
@@ -139,3 +139,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
