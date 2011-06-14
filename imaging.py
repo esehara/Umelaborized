@@ -140,7 +140,7 @@ class umelaborize:
     def save_image(self,file_name):
         self.workspace.save(file_name,"png")
 
-def main():
+def main_esehara():
     ume = umelaborize(2000,1000,'config.json')
     ume.load_image("test.jpg")
     ume.kill_paste(5000,False)
@@ -149,7 +149,7 @@ def main():
     ume.test_show()
     ume.save_image("koiso.png")
 
-if __name__ == '__main__':
+def main_niryuu():
     ume = umelaborize(2000, 1000, 'hoge.bmp', 0)
     print ume.config_json
     ume.load_image('20110501_215111.jpg')
@@ -159,5 +159,6 @@ if __name__ == '__main__':
     ume.test_show()
     ume.save_image("koiso.png")
 
-    #main()
+if __name__ == '__main__':
+    main_niryuu()
 
