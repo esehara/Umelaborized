@@ -160,6 +160,16 @@ def main_niryuu():
     ume.test_show()
     ume.save_image("koiso.png")
 
+def main_takano32():
+    ume = umelaborize(2000, 1000, 'config.json', 0)
+    print(ume.config_json)
+    ume.load_image('mad.jpg')
+    ume.kill_paste(5000,False)
+    ume.load_image("turntable.png")
+    ume.kill_paste(5000,False)
+    ume.test_show()
+    ume.save_image("koiso.png")
+
 if __name__ == '__main__':
-    main_niryuu()
+    main_takano32()
 
