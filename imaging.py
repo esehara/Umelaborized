@@ -8,16 +8,9 @@ import simplejson
 debug = False
 
 class umelaborize:
-    def __init__(self,x = 640,y = 480,json_file = ''):
-        self.workspace = Image.new('RGB',(x,y))
-
-        jfile = open(json_file,"r").read()
-        self.config_json = simplejson.loads(jfile)
-
-        self.make_mask_x = self.config_json[0][0]
-        self.make_mask_y = self.config_json[0][1]
-
-    def __init__(self, x = 640, y = 480, confimagefile = '', hoge = 0):
+    def __init__(self, x = 640, y = 480, confimagefile = None, json_file = None):
+        if json_file:
+            return self.init_with_json_file(x, y, json_file)
         self.workspace = Image.new('RGB', (x, y))
         confImage = Image.open(confimagefile)
         self.config_json = [[confImage.size[0]-1, confImage.size[1]-1]]
@@ -29,6 +22,15 @@ class umelaborize:
             for x in xrange(confImage.size[0]):
                 yArray.append(1 if confImage.getpixel((x,y)) == 0 else 0)
             self.config_json.append(yArray)
+
+    def init_with_json_file(self, x, y, json_file):
+        self.workspace = Image.new('RGB',(x,y))
+
+        jfile = open(json_file,"r").read()
+        self.config_json = simplejson.loads(jfile)
+
+        self.make_mask_x = self.config_json[0][0]
+        self.make_mask_y = self.config_json[0][1]
 
     def load_image(self,image):
         self.im = Image.open(image)
@@ -156,7 +158,7 @@ def main_niryuu():
     ume.save_image("koiso.png")
 
 def main_takano32():
-    ume = umelaborize(2000, 1000, 'config.bmp', 0)
+    ume = umelaborize(2000, 1000, json_file = 'config.json')
     print(ume.config_json)
     ume.load_image('mad.jpg')
     ume.kill_paste(5000,False)
