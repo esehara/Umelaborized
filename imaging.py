@@ -5,6 +5,8 @@ import random
 import math
 import simplejson
 
+debug = False
+
 class umelaborize:
     def __init__(self,x = 640,y = 480,json_file = ''):
         self.workspace = Image.new('RGB',(x,y))
@@ -28,10 +30,9 @@ class umelaborize:
                 yArray.append(1 if confImage.getpixel((x,y)) == 0 else 0)
             self.config_json.append(yArray)
 
-    def load_image(self,image,debug = False):
+    def load_image(self,image):
         self.im = Image.open(image)
-        if debug == True:
-            self.im.show()
+	if debug: self.im.show()
 
     def rotate_image(self,image,flag):
         if flag:
@@ -47,7 +48,7 @@ class umelaborize:
         else:
             return image
 
-    def kill_paste(self,times,rotate_flag = False,debug = False):
+    def kill_paste(self,times,rotate_flag = False):
         image_x,image_y = self.im.size
         
         for i in range(times):
@@ -62,8 +63,7 @@ class umelaborize:
             if box_y < 0:
                 box_y = 0
 
-            if debug == True:
-                print("Paste =>",box_x,box_y,box_x_size,box_y_size)
+	    if debug: print("Paste =>",box_x,box_y,box_x_size,box_y_size)
 
             box = (box_x,box_y,box_x + box_x_size,box_y + box_y_size)
             work_x,work_y = self.workspace.size
@@ -74,15 +74,13 @@ class umelaborize:
             max_work_x = work_x
             max_work_y = work_y
 
-            if debug == True:
-                print(mask_koma_x,mask_koma_y)
+	    if debug: print(mask_koma_x,mask_koma_y)
 
             while mask_check:
                 work_x = random.randint(1,max_work_x - 1)
                 work_y = random.randint(1,max_work_y - 1)
 
-                if debug == True:
-                    print(work_x,work_y,(work_y / mask_koma_y) + 1,(work_x / mask_koma_x),self.config_json[work_y / mask_koma_y + 1][work_y / mask_koma_y])
+		if debug: print(work_x,work_y,(work_y / mask_koma_y) + 1,(work_x / mask_koma_x),self.config_json[work_y / mask_koma_y + 1][work_y / mask_koma_y])
                 
                 fix_x = random.randint(0,max_work_x / 10)
                 fix_y = random.randint(0,max_work_y / 10)
@@ -91,14 +89,11 @@ class umelaborize:
                     fix_x = 0
                 if (work_y - fix_y) / mask_koma_y < 1 or work_y - fix_y < 0:
                     fix_y = 0
-                if debug == True:
-                    print(work_x - fix_x,work_y - fix_y)
+		if debug: print(work_x - fix_x,work_y - fix_y)
                 if self.config_json[((work_y - fix_y) / mask_koma_y) + 1][(work_x - fix_x) / mask_koma_x] == 1:
                     mask_check = False
 
-            if debug == True:
-                print("mask check ok")
-
+	    if debug: print("mask check ok")
             #if debug == True:
             #    self.im.crop(box).show()
 
